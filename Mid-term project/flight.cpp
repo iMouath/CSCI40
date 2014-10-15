@@ -14,7 +14,7 @@ using namespace std;
 int main()
 {
 	int k=0,i,index=0; //k = subscript in array, i used for loops
-	double seconds[50], height[50], input;
+	double seconds[50], height[50], input,LI_H; // LI_H used to determine the interpolation height
 	bool found = false; // a condition to check if input time was found in data .. if not we use the interpolation formula 
 
 	ifstream flight_data;
@@ -45,10 +45,21 @@ int main()
 	}
 	if (!found) // if input is not in the datafile
 	{
+		for (i = 0; i < k; i++)
+		{
+			if (seconds[i] < input)
+			{
+				index = i;
+			}
+			else
+				break;
+		}
 
+		LI_H = height[index] + ((input - seconds[index]) / (seconds[index + 1] - seconds[index]))*(height[index + 1] - height[index]); //using the formula provided in the assignment
+		cout <<endl << "At " << input << " Seconds." << " The Rocket Height = " << LI_H << " Meters." << endl << endl; // Output
 	}
 
-	flight_data.close();
+	flight_data.close(); //close the file
 	system("PAUSE");
 	return 0;
 }
