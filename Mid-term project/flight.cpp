@@ -17,11 +17,9 @@ int main()
 	double seconds[50], height[50], input,LI_H; // LI_H used to determine the interpolation height
 	bool found = false; // a condition to check if input time was found in data .. if not we use the interpolation formula 
 
+	//--Reading data file
 	ifstream flight_data;
-	flight_data.open("flight.txt"); //Assuming flight.txt is in the same directory as the application
-
-	cout << "Please Enter time in seconds: "; //prompt
-	cin >> input;
+	flight_data.open("flighttxt"); //Assuming flight.txt is in the same directory as the application
 
 	if (flight_data.is_open()) // check if the file is correctly opened
 	{
@@ -33,9 +31,16 @@ int main()
 	}
 	else
 	{
-		cout << "Error opening flight.txt !\n\n";
+		cout << "Error opening datafile !\n\nExiting.\n\n";
+		system("PAUSE");
 		return 0;
 	}
+
+	//--Prompt & Input --
+	cout << "Please Enter time in seconds: "; //prompt
+	cin >> input;
+
+
 	for (i=0; i < k; i++)
 	{
 		if (seconds[i] == input) // checks of input is found inside the datafile
