@@ -19,7 +19,7 @@ int main()
 
 	//--Reading data file
 	ifstream flight_data;
-	flight_data.open("flighttxt"); //Assuming flight.txt is in the same directory as the application
+	flight_data.open("flight.txt"); //Assuming flight.txt is in the same directory as the application
 
 	if (flight_data.is_open()) // check if the file is correctly opened
 	{
@@ -33,7 +33,7 @@ int main()
 	{
 		cout << "Error opening datafile !\n\nExiting.\n\n";
 		system("PAUSE");
-		return 0;
+		return 0; // in-case of error, exit application.
 	}
 
 	//--Prompt & Input --
@@ -41,7 +41,7 @@ int main()
 	cin >> input;
 
 
-	for (i=0; i < k; i++)
+	for (i = 0; i < k; i++)
 	{
 		if (seconds[i] == input) // checks of input is found inside the datafile
 		{
