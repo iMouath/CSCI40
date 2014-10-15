@@ -13,36 +13,41 @@ using namespace std;
 
 int main()
 {
-	int k;
-	double seconds, height, input;
-	ifstream flight_data;
-	flight_data.open("flight.txt");
+	int k=0,i,index=0; //k = subscript in array, i used for loops
+	double seconds[50], height[50], input;
+	bool found = false; // a condition to check if input time was found in data .. if not we use the interpolation formula 
 
-	cout << "Please Enter time in seconds: ";
+	ifstream flight_data;
+	flight_data.open("flight.txt"); //Assuming flight.txt is in the same directory as the application
+
+	cout << "Please Enter time in seconds: "; //prompt
 	cin >> input;
 
-	if (flight_data.is_open())
+	if (flight_data.is_open()) // check if the file is correctly opened
 	{
-		while (!flight_data.eof())
+		while (!flight_data.eof()) // keep reading until you reach the end of the file
 		{
-			flight_data >> seconds >> height;
-			if (input == seconds)
-			{
-				cout << "Height is: " << height << endl;
-			}
-			else
-			{
-
-			}
-				
-			
+			flight_data >> seconds[k] >> height[k]; //read the file in assign the value to k corresponding to array subscript
+			k++;
 		}
 	}
 	else
 	{
 		cout << "Error opening flight.txt !\n\n";
-		
 	}
+	for (i=0; i < k; i++)
+	{
+		if (seconds[i] == input) // checks of input is found inside the datafile
+		{
+			found = true; // value found in data 
+			cout <<endl<< "At " << input << " Seconds." << " The Rocket Height = " << height[i] << " Meters." << endl << endl;
+		}
+	}
+	if (!found) // if input is not in the datafile
+	{
+
+	}
+
 	flight_data.close();
 	system("PAUSE");
 	return 0;
