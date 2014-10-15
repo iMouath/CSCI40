@@ -34,6 +34,7 @@ int main()
 	else
 	{
 		cout << "Error opening flight.txt !\n\n";
+		return 0;
 	}
 	for (i=0; i < k; i++)
 	{
