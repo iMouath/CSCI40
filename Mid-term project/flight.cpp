@@ -1,3 +1,5 @@
+//TODO: Don't take any input that is lower or higher than the data file.
+
 /*
 file: flight.cpp
 CSCI-40 -- Oct 20
